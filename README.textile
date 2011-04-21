@@ -1,0 +1,25 @@
+
+h1. HISTORY
+
+SuperUnpack was written after I got tired of parsing EXIF, IPTC, MP3s and Palm Pilot (!) by hand. This DSL implements simple binary primitives that allows one to quickly parse a binary file and explore it via an OO interface.
+
+
+h1. USAGE 
+
+h2. Supported Primitives
+
+* <code>Uint</code>
+* <code>Blong</code>
+* <code>BShort</code>
+* <code>Llong</code>
+* <code>Lshort</code>
+* <code>Lshort</code>
+* <code>Char</code>
+* <code>CString</code>
+* <code>PascalString</code>
+
+
+h1. LIMITATIONS
+
+* Poor loop and complex datastructure support
+* No write support
