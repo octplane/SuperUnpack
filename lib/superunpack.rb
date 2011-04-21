@@ -106,9 +106,11 @@ class Complex
     def Char name, length=1
       add_object name, Char, length
     end
-    def add_object name, klass, length=1
+    def add_object name, klass, extra = nil
       @content ||=Array.new
-      @content << [name, klass, length]
+      line = [name, klass]
+      line << extra if extra != nil
+      @content << line
       begin
         attr_reader name
       rescue Exception=>e
@@ -142,14 +144,20 @@ class Complex
     parse
   end
   def parse stringio = nil
+    puts "Will attempt to match this structure: " + content.inspect if $DEBUG
     if stringio!=nil
       @input = stringio
     end
     content.each do |element|
-      name, type, repeat = element
+      extra = nil
+      if element.length == 3
+        name, type, extra = element
+      else
+        name, type = element
+      end
       @inner_data = Array.new
-      if repeat!=1
-        data = type.new(repeat)
+      if extra != nil 
+        data = type.new(extra)
       else
         data = type.new
       end

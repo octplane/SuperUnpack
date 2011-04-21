@@ -10,6 +10,16 @@ h1. Ruby Documentation
 
 Please see "the SuperUnpack rdoc":http://rubydoc.info/github/octplane/SuperUnpack/master/frames for the project RDoc.
 
+h1. Philosophy
+
+* When using a native type (<code>Uint</code>, <code>CString</code>,...), the syntax always indicate the field name as its first parameter:
+
+<pre><code>PascalString :field_name</code></pre>
+
+* Whereas non native type use in Complex object include the class name first, and then the field name:
+
+<pre><code>element TestAllTypes, :field_name</code></pre>
+
 h1. USAGE 
 
 SuperUnpack gives you the ability transform a binary stream into a structured set of ruby object.
@@ -48,3 +58,4 @@ h1. LIMITATIONS
 
 * Poor loop and complex datastructure support
 * No write support
+* It's ruby, so it's rather slow. Also, do not use this code to control nuclear warhead.

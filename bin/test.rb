@@ -2,7 +2,7 @@ require 'test/unit'
 
 # Extend libpath with .
 $current_dir = File.dirname(__FILE__)
-$: << $current_dir
+$: << $current_dir+"/../lib"
 
 # Debug ?
 #$DEBUG = true
@@ -163,5 +163,14 @@ class LengthTest < Test::Unit::TestCase
   end
 end
 
+# class Anyterator < Complex
+#   Any CString, :strings
+# end
 
-
+# class AniteratorTest < Test::Unit::TestCase
+#   def test_iterator
+#     i = Anyterator.new
+#     i.parse_string("string 1\0string 2\0string 4\t\0")
+#     assert_equal(['string 1','string 2', "string 4\t"], i.strings.value)
+#   end
+# end

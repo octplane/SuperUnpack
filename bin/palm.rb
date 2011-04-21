@@ -1,3 +1,6 @@
+$current_dir = File.dirname(__FILE__)
+$: << "../"+$current_dir+"/lib"
+
 require 'superunpack'
 
 
@@ -93,6 +96,6 @@ end
 #
 
 ab = AddressBook.new
-ab.parse_string(File.open("data/address.dat").binmode.read)
+ab.parse_string(File.open($current_dir+"/../data/address.dat").binmode.read)
 puts ab.record_count-0x1000
 puts ab.category_info.long_name

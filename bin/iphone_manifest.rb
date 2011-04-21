@@ -1,5 +1,5 @@
 $current_dir = File.dirname(__FILE__)
-$: << $current_dir
+$: << $current_dir+"/../lib"
 $KCODE='U'
 
 require "superunpack"
@@ -37,7 +37,7 @@ end
 
 m = Mbdb.new
 
-m.parse_string(File.open("#{$current_dir}/data/Manifest.mbdb").binmode.read)
+m.parse_string(File.open("#{$current_dir}/../data/Manifest.mbdb").binmode.read)
 
 while not m.input.eof?
   file = MFile.new
