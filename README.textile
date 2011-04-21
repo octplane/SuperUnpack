@@ -1,8 +1,14 @@
+h1. About
+
+SuperUnpack is a ruby library coded by Pierre Baillet. Originally developped around 2006. It was uploaded to GitHub in April, 2011.
 
 h1. HISTORY
 
 SuperUnpack was written after I got tired of parsing EXIF, IPTC, MP3s and Palm Pilot (!) by hand. This DSL implements simple binary primitives that allows one to quickly parse a binary file and explore it via an OO interface.
 
+h1. Ruby Documentation
+
+Please see http://rubydoc.info/github/octplane/SuperUnpack/master/frames for the project RDoc.
 
 h1. USAGE 
 

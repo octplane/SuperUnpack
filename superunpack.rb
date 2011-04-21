@@ -1,12 +1,17 @@
 class UnknownSizeParsableException < Exception; end
 
+# The Parsable module is responsible of implementing the basics of binary parsing in all
+# class that the SuperUnpack library uses.
 module Parsable
+  # Assign the current IO for parsing
   def input=(value)
     @input = value
   end
+  # Returns the length in bytes of this object
   def length
     @length
   end
+  # Move ahead in the stream and restugn the next character
   def next_char
     val = @input.getc
     if $DEBUG
@@ -14,6 +19,7 @@ module Parsable
     end
     return val
   end
+  # read length char using next_char and call decode_data
   def parse
     read_data
     decode_data
