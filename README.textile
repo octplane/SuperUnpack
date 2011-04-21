@@ -15,28 +15,19 @@ h1. USAGE
 SuperUnpack gives you the ability transform a binary stream into a structured set of ruby object.
 
 The objects are defined via a declaration of their structure that maps to the underlying binary structure AND the semantic meaning of the data:
-<pre>
-<code>
-class CategoryInfo < Complex
+<pre><code>class CategoryInfo < Complex
    Char :foo, 11 
    PascalString :long_name
    Blong :bar
    PascalString :short_name
-end
-</code>
-</pre>
+end</code></pre>
 
 This structure declares a binary stream that starts with 11 bytes of data, then a PascalString (see below for format description), and long and another PascalString.
 
 The content of the datastructure is accessible like this:
-<pre>
-<code>
-ds = CategoryInfo.new
+<pre><code>ds = CategoryInfo.new
 ds.parse(my_binary_string)
-puts ds.long_name
-</code>
-</pre>
-
+puts ds.long_name</code></pre>
 
 h2. Supported Primitives
 

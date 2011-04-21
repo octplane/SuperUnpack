@@ -1,11 +1,22 @@
 require 'test/unit'
+
+# Extend libpath with .
+$current_dir = File.dirname(__FILE__)
+$: << $current_dir
+
+# Debug ?
+#$DEBUG = true
+
+# Unicode ?
+$KCODE='U'
+
 require 'superunpack'
 
 class TestParsable < Test::Unit::TestCase
   include Parsable
   def test_unknowsizeparsableexception
     @length = nil
-    assert_raise(UnknowSizeParsableException) {
+    assert_raise(UnknownSizeParsableException) {
       read_data
     }
   end
@@ -104,14 +115,20 @@ class PString < Complex
   PascalString :var
 end
 class MultipleChar < Test::Unit::TestCase
-  def test_pstring
-    ab = PString.new
-    ab.parse_string("\4COIN")
-    assert_equal('COIN', ab.var)
-    ab.parse_string("\1U")
-    assert_equal('U', ab.var)
-    ab.parse_string("\0")
-    assert_equal("\0", ab.var)
+  def test_pascal_string
+    ab = PascalString.new
+    # Regular 2 bytes Pascal String
+    ab.parse_string("\0\4COIN")
+    assert_equal('COIN', ab.value)
+
+    # Empty String
+    ab.parse_string("\xff\xff")
+    assert_equal("", ab.value)
+
+    # Another Empty String
+    ab.parse_string("\x0\x0")
+    assert_equal("", ab.value)
+
   end
 end
 

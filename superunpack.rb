@@ -1,3 +1,5 @@
+require 'stringio'
+
 class UnknownSizeParsableException < Exception; end
 
 # The Parsable module is responsible of implementing the basics of binary parsing in all
@@ -18,6 +20,10 @@ module Parsable
       puts sprintf("%X", val)
     end
     return val
+  end
+  def parse_string(string)
+    @input = StringIO.new(string)
+    parse
   end
   # read length char using next_char and call decode_data
   def parse
@@ -56,7 +62,6 @@ module Parsable
 end
 
 
-require 'stringio'
 class Complex
   class << self
     BASICFORMATS = [
@@ -213,21 +218,21 @@ class PascalString
     @value = ''
     length = next_char
     if length == 255
-      length != next_char
-      if length == 255
-        @values = [ "\0" ]
-        return
-      else
-        length = 255 * 255 + length
-      end
+      length = next_char
+      length = 255 * 255 + length
     else
       length = length *255  + next_char
     end
+    if length == 0 or length == 255 * (255 +1)
+      @values = [ "" ]
+      return
+    end
+
+
     puts "length:#{length}" if $DEBUG
     0.upto(length-1) do
       @value += next_char.chr
     end
-    puts @value
     @values = [ @value ]
   end
 end
