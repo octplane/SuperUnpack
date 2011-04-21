@@ -8,7 +8,7 @@ SuperUnpack was written after I got tired of parsing EXIF, IPTC, MP3s and Palm P
 
 h1. Ruby Documentation
 
-Please see http://rubydoc.info/github/octplane/SuperUnpack/master/frames for the project RDoc.
+Please see "the SuperUnpack rdoc":http://rubydoc.info/github/octplane/SuperUnpack/master/frames for the project RDoc.
 
 h1. USAGE 
 
