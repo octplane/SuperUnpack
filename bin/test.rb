@@ -163,6 +163,28 @@ class LengthTest < Test::Unit::TestCase
   end
 end
 
+
+class SimpleOffsetMix < Complex
+  Offset :niloffset
+  CString :string
+  Offset :offset
+end
+
+class OffsetTest < Test::Unit::TestCase
+  def test_simple_offset
+    ab = Offset.new
+    ab.parse_string("\0\0")
+    assert(0,ab.value)
+  end
+  def test_simple_offset
+    ab = SimpleOffsetMix.new
+    ab.parse_string("This is a test\0")
+    assert(0, ab.niloffset)
+    assert("This is a test", ab.string)
+    assert(15, ab.offset)
+  end
+end
+
 # class Anyterator < Complex
 #   Any CString, :strings
 # end

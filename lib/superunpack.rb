@@ -97,6 +97,9 @@ class Complex
     def element klass, name
       add_object name, klass
     end
+    def Offset name
+      add_object name, Offset
+    end
     def CString name
       add_object name, CString
     end
@@ -171,7 +174,16 @@ class Complex
       instance_variable_set("@#{name}", data.value)
     end
   end
-  
+end
+# Offset creates a field that contains the position where this field is scanned
+class Offset
+  include Parsable
+  def length
+    0
+  end
+  def read_data
+    @values = [ @input.pos ]
+  end
 end
 class CString 
   include Parsable
