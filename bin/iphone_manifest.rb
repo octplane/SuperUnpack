@@ -1,5 +1,11 @@
 # Sample mddb and mbdbx reader
-# backup file for the iphone
+# Reads Backup file for the iphone
+#
+# Data structures are inspired from 
+# https://github.com/petewarden/iPhoneTracker
+# and
+# http://stackoverflow.com/questions/3085153/how-to-parse-the-manifest-mbdb-file-in-an-ios-4-0-itunes-backup
+
 
 $current_dir = File.dirname(__FILE__)
 $: << $current_dir+"/../lib"
@@ -70,6 +76,7 @@ class MFilex < Complex
 
 end
 
+# Fixme by implement loopable attributes in SuperUnpack
 def pstring(input)
   p = PascalString.new
   p.input = input
@@ -117,6 +124,7 @@ def parse_mbdx filename = "#{$current_dir}/../data/Manifest.mbdx"
   filex
 end
 
+# Parse a backup at path
 class IPhoneBackup
   def initialize path= "#{$current_dir}/../data/"
     @file_list = {}
@@ -130,6 +138,7 @@ class IPhoneBackup
       @file_list[file.filename] = file
     end
   end
+  # Returns the file object corresponding to a given filename in the backup
   def file(fname)
     @file_list[fname]
   end
